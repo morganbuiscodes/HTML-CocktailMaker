@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <link rel="stylesheet" href="styles.css">
+</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Picker</title>
+</head>
+<body>
+  <!-- Tabbed Interface -->
+  <div class="tab-button" onclick="openTab('recipePicker')">Recipe Picker</div>
+  <div class="tab-button" onclick="openTab('allRecipes')">All Recipes</div>
+
+  <!-- Recipe Picker Tab -->
+  <div id="recipePicker" class="tab">
+      <!-- ... Your existing content for the recipe picker ... -->
+  </div>
+
+  <!-- All Recipes Tab -->
+  <div id="allRecipes" class="tab">
+      <h2>All Recipes and Ingredients (Alphabetical Order)</h2>
+      <ul id="recipeFullList"></ul>
+  </div>
+
+    <h1>Recipe Picker</h1>
+    <form id="ingredientForm">
+        <p>Select your ingredients:</p>
+        <div class="container">
+            <div class="column">
+            <h2>Liquers</h2>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="prosecco"> prosecco </li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="dark rum"> dark rum </li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="ginger beer"> ginger beer </li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="aperol"> aperol</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="gin"> gin</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="triple sec"> triple sec</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="maraschino liqueur"> maraschino liqueur</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="creme de violette"> creme de violette</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="scotch"> scotch</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="drambuie"> drambuie</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="vodka"> vodka</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="citron vodka"> citron vodka</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="peach schnapps"> peach schnapps</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="bourbon"> bourbon</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="angostura bitters"> angostura bitters</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="coffee liqueur"> coffee liqueur</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="amaretto liqueur"> amaretto liqueur</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="irish cream liqueur"> irish cream liqueur</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="bitter Campari"> bitter Campari</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="Campari"> Campari</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="sweet red vermouth"> sweet red vermouth</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="rye whiskey"> rye whiskey</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="bitters"> bitters</li>
+            </label>
+        </div>
+        <div class="column">
+            <h2>Mixers</h2>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="peach puree"> peach puree</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="soda water"> soda water</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="lemon juice"> lemon juice</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="orange juice"> orange juice</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="cranberry juice"> cranberry juice</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="lime juice"> lime juice</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="sugar syrup"> sugar syrup</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="egg white"> egg white</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="cream"> cream</li>
+            </label>
+            <label>
+                <li><input type="checkbox" name="ingredient" value="sugar cube"> sugar cube</li>
+            </label>
+            <!-- Add more ingredient checkboxes as needed -->
+            </div>
+        </div>
+        <br/>
+
+        <!-- Button to reset checkboxes -->
+        <button type="button" class="pretty-button" onclick="resetCheckboxes()">Reset</button>
+        <button type="submit" class="pretty-button">Find Recipes</button>
+    </form>
+
+    <div id="recipeList" class="with-bullet">
+       <!-- <li class="with-bullet"></li>-->
+        <!-- Recipes will be displayed here -->
+    </div>
+
+    <script>
+        // Define a list of recipes with their ingredients
+        const recipes = [
+            {
+                name: "Bellini",
+                ingredients: ["prosecco", "peach puree"],
+                measurements: ["4 measures prosecco", " 2 measures peach puree "],
+            },
+            {
+                name: "Dark 'N' Stormy",
+                ingredients: ["dark rum", "ginger beer"],
+                measurements: ["2 measures dark rum", " 2 measures ginger beer", " 0.5 measure lime juice (optional)"],
+            },
+            {
+                name: "Spritz Veneziano",
+                ingredients: ["prosecco", "aperol", "soda water"],
+                measurements: ["3 measures prosecco", " 2 measures aperol", " splash of soda water"],
+            },
+            {
+                name: "White Lady",
+                ingredients: ["gin", "triple sec", "lemon juice"],
+                measurements: ["1.5 measures gin", " 1 measure triple sec", " 3/4 measure lemon juice"],
+            },
+            {
+                name: "Aviation",
+                ingredients: ["gin", "maraschino liqueur", "lemon juice", "creme de violette"],
+                measurements: ["1.5 measures gin", " 0.5 maraschino liqueur", " 0.5 measure lemon juice", " 0.25 measure creme de violette"],
+            },
+            {
+                name: "Rusty Nail",
+                ingredients: ["scotch", "drambuie"],
+                measurements: ["2 measures scotch", " 1 measure drambuie"],
+            },
+            {
+                name: "Sex On The Beach",
+                ingredients: ["vodka", "peach schnapps", "orange juice", "cranberry juice"],
+                measurements: ["1.5 measures vodka", " 3/4 measure peach schnapps", " 1 measure orange juice", " 1 measure cranberry juice"],
+            },
+            {
+                name: "Cosmopolitan",
+                ingredients: ["citron vodka", "triple sec", "cranberry juice", "lime juice"],
+                measurements: ["2 measures citron vodka", " 1 measure triple sec", " 1 measure cranberry juice", " 0.5 measure lime juice"],
+            },
+            {
+                name: "Whiskey Sour",
+                ingredients: ["bourbon", "lemon juice", "sugar syrup", "egg white", "angostura bitters"],
+                measurements: ["1.5 measures bourbon", " 1 measure lemon juice", " 0.5 measure sugar syrup", " 0.5 measure egg white", " a few dashes of angostura bitters"],
+            },
+            {
+                name: "Screaming Orgasm",
+                ingredients: ["vodka", "coffee liqueur", "amaretto liqueur", "irish cream liqueur", "cream"],
+                measurements: ["1 measure vodka", " 1 measure coffee liqueur", " 1 measure amaretto liqueur", " 1 measure irish cream liqueur", " 1 measure single cream"],
+            },
+            {
+                name: "Americano",
+                ingredients: ["bitter Campari", "sweet red vermouth", "soda water"],
+                measurements: ["1 measure bitter Campari", " 1 measure sweet red vermouth", " splash of soda water"],
+            },
+            {
+                name: "Boulevardier",
+                ingredients: ["bourbon", "sweet red vermouth", "soda water"],
+                measurements: ["1.5 measures bourbon"," 1 measure bitter Campari", " 1 measure sweet red vermouth"],
+            },
+            {
+                name: "Old Fashioned",
+                ingredients: ["bourbon", "sugar syrup", "angostura bitters"],
+                measurements: ["2 measures bourbon or rye whiskey"," 1 measure bitter Campari", " 1 measure sweet red vermouth"],
+            },
+            {
+                name: "Old Fashioned",
+                ingredients: ["rye whiskey", "sugar syrup", "angostura bitters"],
+                measurements: ["2 measures bourbon or rye whiskey"," 1 sugar cube or sugar syrup", " a few dashes of angostura bitters"],
+            },
+            {
+                name: "Old Fashioned",
+                ingredients: ["rye whiskey", "sugar cube", "angostura bitters"],
+                measurements: ["2 measures bourbon or rye whiskey"," 1 sugar cube or sugar syrup", " a few dashes of angostura bitters"],
+            },
+            {
+                name: "Old Fashioned",
+                ingredients: ["bourbon", "sugar cube", "angostura bitters"],
+                measurements: ["2 measures bourbon or rye whiskey"," 1 sugar cube or sugar syrup", " a few dashes of angostura bitters"],
+            },
+            {
+                name: "Rob Roy",
+                ingredients: ["scotch", "sweet vermouth", "bitters"],
+                measurements: ["2 measures scotch", " 1 measure sweet vermouth", " a few dashes of bitters"],
+            },
+            {
+                name: "Moscow Mule",
+                ingredients: ["vodka","lime juice", "ginger beer"],
+                measurements:  ["2 measures vodka"," 1 measure lime juice", " 4 measures ginger beer"],
+            },
+            {
+                name: "Amaretto Sour",
+                ingredients: ["amaretto liqueur","lemon juice","bitters","egg white"],
+                measurements: ["2 measures amaretto liqueur"," 1 measure lemon juice"," a few dashes of bitters"," 0.5 measure egg white"],
+            },
+            {
+                name: "Negroni",
+                ingredients: ["gin", "Campari", "sweet red vermouth"],
+                measurements:  ["1 measure gin", " 1 measure Campari", " 1 measure sweet red vermouth"],
+            }
+            // Add more recipes as needed
+        ];
+
+        // Handle form submission
+        const form = document.getElementById("ingredientForm");
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Get selected ingredients
+            const selectedIngredients = Array.from(form.querySelectorAll('input[name="ingredient"]:checked'))
+                .map(input => input.value);
+
+            // Function to check if a recipe can be made with selected ingredients
+            function canMakeRecipe(recipe) {
+                for (const ingredient of recipe.ingredients) {
+                    if (!selectedIngredients.includes(ingredient)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            // Create an object to store unique recipe names
+            const uniqueRecipeNames = {};
+
+            // Find and display recipes the user can make
+            const recipesUserCanMake = recipes.filter(recipe => {
+                if (canMakeRecipe(recipe) && !uniqueRecipeNames[recipe.name]) {
+                    uniqueRecipeNames[recipe.name] = true;
+                    return true;
+                }
+                return false;
+            });
+            const recipeList = document.getElementById("recipeList");
+            if (recipesUserCanMake.length > 0) {
+                recipeList.innerHTML = "<p>You can make the following recipes:</p>";
+                const ul = document.createElement("ul");
+                for (const recipe of recipesUserCanMake) {
+                    const li = document.createElement("li");
+                    li.textContent = recipe.name + " : " + recipe.measurements;
+                    ul.appendChild(li);
+                }
+                recipeList.appendChild(ul);
+            } else {
+                recipeList.innerHTML = "<p>Sorry, you don't have enough ingredients to make any recipes.</p>";
+            }
+        });
+
+        // Function to display all recipes and ingredients without duplicates
+        function displayAllRecipes() {
+            const allRecipesContainer = document.getElementById("allRecipes");
+            const recipeList = document.getElementById("recipeList");
+
+            // Clear the list
+            recipeList.innerHTML = "";
+
+            // Create an object to store unique recipes
+            const uniqueRecipes = {};
+
+            // Iterate through recipes and add them to the list
+            recipes.forEach(recipe => {
+                if (!uniqueRecipes[recipe.name]) {
+                    const listItem = document.createElement("li");
+                    listItem.innerHTML = `<strong>${recipe.name}</strong>: ${recipe.ingredients.join(", ")}`;
+                    recipeList.appendChild(listItem);
+                    uniqueRecipes[recipe.name] = true;
+                }
+            });
+            
+            allRecipesContainer.style.display = "block"; // Display the tab
+        }
+
+        // Function to open a specific tab
+        function openTab(tabName) {
+            const tabs = document.querySelectorAll(".tab");
+            const buttons = document.querySelectorAll(".tab-button");
+
+            tabs.forEach(tab => (tab.style.display = "none")); // Hide all tabs
+            buttons.forEach(button => button.classList.remove("active")); // Remove active class from all buttons
+
+            const tabToOpen = document.getElementById(tabName);
+            if (tabToOpen) {
+                tabToOpen.style.display = "block"; // Display the selected tab
+                if (tabName === 'allRecipes') {
+                    displayAllRecipes(); // Display the recipes when the "All Recipes" tab is clicked
+                }
+            }
+
+            event.currentTarget.classList.add("active"); // Add active class to the clicked button
+        }
+
+        // Function to reset checkboxes
+        function resetCheckboxes() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+        }
+
+    </script>
+</body>
+</html>

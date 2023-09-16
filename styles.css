@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+/* Additional styles for content within the body */
+.content {
+     text-align: center;
+ }
+
+.pretty-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3498db; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth color transition on hover */
+}
+
+ /* Hover state for the button */
+.pretty-button:hover {
+     background-color: #2980b9; /* Change the background color on hover */
+}
+
+li {
+    list-style-type: none; 
+    margin-bottom: 10px; /* Add spacing between checkboxes */
+}
+
+/* Style the checkboxes */
+input[type="checkbox"] {
+      margin-right: 5px; /* Add spacing between checkbox and label */
+}
+
+ /* Style <li> elements with a class "with-bullet" */
+.with-bullet {
+       list-style-type: disc; /* Apply bullet points to <li> elements with this class */
+}
+
+ /* Apply styles to create two columns */
+.container {
+       width: 100%;
+       max-width: 800px; /* Adjust the maximum width as needed */
+      margin: 0 auto;
+      overflow: hidden; /* Clear floats */
+}
+
+.column {
+     width: 50%; /* Create two equal-width columns */
+     float: left; /* Float the columns next to each other */
+ }
+
+ /* Define styles for the tabs */
+ .tab {
+      display: none; /* Hide all tabs by default */
+ }
+
+/* Style the tab buttons */
+.tab-button {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+.tab-button:hover {
+    background-color: #ddd;
+}
+
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    background-color: #fff;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin:
+}
+
